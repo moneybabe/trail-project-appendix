@@ -4,8 +4,8 @@ import numpy as np
 from definitions import *
 
 if __name__ == "__main__":
-    n_intervals = 1e4
-    values = np.linspace(round_down(1 / 3), round_up(3), int(n_intervals))
+    n_intervals = int(1e7)
+    values = np.linspace(round_down(1 / 3), round_up(3), n_intervals)
     lower_m, upper_m = [], []
 
     with ThreadPoolExecutor() as executor:
