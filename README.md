@@ -4,7 +4,6 @@ This repository contains the code and resources used for the numerical verificat
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
 ## Table of Contents
 
 - [Introduction](#introduction)
@@ -14,9 +13,12 @@ This repository contains the code and resources used for the numerical verificat
   - [Coq Installation](#coq-installation)
   - [Python Installation](#python-installation)
 - [Coq Implementation](#coq-implementation)
+  - [Setup and Usage](#setup-and-usage)
 - [Python Implementations](#python-implementations)
   - [Implementation 1: Interval Arithmetic with mpmath](#implementation-1-interval-arithmetic-with-mpmath)
+  - [Setup and Usage](#setup-and-usage-1)
   - [Implementation 2: Custom Rounding](#implementation-2-custom-rounding)
+  - [Setup and Usage](#setup-and-usage-2)
 - [Results](#results)
 - [Contributing](#contributing)
 - [License](#license)
