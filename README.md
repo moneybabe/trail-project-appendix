@@ -97,7 +97,7 @@ Open the Main.v file using your preferred Coq IDE (CoqIDE, Proof General, or VSC
 
 This implementation uses the `mpmath` library to perform interval arithmetic, providing rigorous bounds by accounting for all possible values within each interval, including floating-point errors.
 
-Setup and Usage
+### Setup and Usage
 
 1. Navigate to the Interval Arithmetic Folder:
 
@@ -133,7 +133,7 @@ python main.py
 
 This implementation manually controls the floating-point rounding direction to ensure conservative estimates. By strategically rounding computations up or down, it accounts for floating-point errors and ensures the computed lower bound is rigorous.
 
-Setup and Usage
+### Setup and Usage
 
 1. Navigate to the Custom Rounding Folder:
 
