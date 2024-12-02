@@ -16,9 +16,9 @@ This repository contains the code and resources used for the numerical verificat
   - [Setup and Usage](#setup-and-usage)
 - [Python Implementations](#python-implementations)
   - [Implementation 1: Interval Arithmetic with mpmath](#implementation-1-interval-arithmetic-with-mpmath)
-  - [Setup and Usage](#setup-and-usage-1)
+    - [Setup and Usage](#setup-and-usage-1)
   - [Implementation 2: Custom Rounding](#implementation-2-custom-rounding)
-  - [Setup and Usage](#setup-and-usage-2)
+    - [Setup and Usage](#setup-and-usage-2)
 - [Results](#results)
 - [Contributing](#contributing)
 - [License](#license)
@@ -99,7 +99,7 @@ Open the Main.v file using your preferred Coq IDE (CoqIDE, Proof General, or VSC
 
 This implementation uses the `mpmath` library to perform interval arithmetic, providing rigorous bounds by accounting for all possible values within each interval, including floating-point errors.
 
-### Setup and Usage
+#### Setup and Usage
 
 1. Navigate to the Interval Arithmetic Folder:
 
@@ -135,7 +135,7 @@ python main.py
 
 This implementation manually controls the floating-point rounding direction to ensure conservative estimates. By strategically rounding computations up or down, it accounts for floating-point errors and ensures the computed lower bound is rigorous.
 
-### Setup and Usage
+#### Setup and Usage
 
 1. Navigate to the Custom Rounding Folder:
 
