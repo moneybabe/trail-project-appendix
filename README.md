@@ -1,214 +1,180 @@
-# trail-project-appendix
+# Trail of Lost Pennies: Numerical Verification of $\min_{1 \leq i \leq N} \mathcal{M}^\downarrow_{5,4}(t_{i-1}, t_i)$
 
-Random Turn Games: Numerical Verification of \(\min_{1 \leq i \leq N} \mathcal{M}^\downarrow_{5,4}(t_{i-1}, t_i)\)
+This repository contains the code and resources used for the numerical verification of the lower bound of $\min_{1 \leq i \leq N} \mathcal{M}^\downarrow_{5,4}(t_{i-1}, t_i)$ in the Trail of Lost Pennies, as discussed in our paper.
 
-This repository contains the code and resources used for the numerical verification of the lower bound of \(\min_{1 \leq i \leq N} \mathcal{M}^\downarrow_{5,4}(t_{i-1}, t_i)\) in the context of random turn games, as discussed in our paper.
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-Table of Contents
-	- [Introduction](#introduction)
-	- [Repository Structure](#repository-structure)
-	- [Getting Started](#getting-started)
-	- [Prerequisites](#prerequisites)
-	- [Installation](#installation)
-		- [Coq Installation](#coq-installation)
-		- [Python Installation](#python-installation)
-	- [Coq Implementation](#coq-implementation)
-		- [Description](#description)
-		- [Setup and Usage](#setup-and-usage)
-	- [Python Implementations](#python-implementations)
-		- [Common Setup](#common-setup)
-		- [Implementation 1: Interval Arithmetic with mpmath](#implementation-1-interval-arithmetic-with-mpmath)
-			- [Description](#description-1)
-			- [Usage](#usage)
-		- [Implementation 2: Custom Rounding](#implementation-2-custom-rounding)
-			- [Description](#description-2)
-			- [Usage](#usage-1)
-	- [Results](#results)
-	- [Contributing](#contributing)
-	- [License](#license)
+## Table of Contents
 
-# Introduction
+- [Introduction](#introduction)
+- [Repository Structure](#repository-structure)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+  - [Coq Installation](#coq-installation)
+  - [Python Installation](#python-installation)
+- [Coq Implementation](#coq-implementation)
+- [Python Implementations](#python-implementations)
+  - [Implementation 1: Interval Arithmetic with mpmath](#implementation-1-interval-arithmetic-with-mpmath)
+  - [Implementation 2: Custom Rounding](#implementation-2-custom-rounding)
+- [Results](#results)
+- [Contributing](#contributing)
+- [License](#license)
 
-In our study of random turn games, we aim to establish a rigorous lower bound for the value of \(\min_{1 \leq i \leq N} \mathcal{M}^\downarrow_{5,4}(t_{i-1}, t_i)\). Due to the computational complexity and the need for rigorous error control, we provide both a formal verification using Coq and two numerical implementations in Python.
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+## Introduction
+
+In our study of random turn games, we aim to establish a rigorous lower bound for the value of $\min_{1 \leq i \leq N} \mathcal{M}^\downarrow_{5,4}(t_{i-1}, t_i)$. Due to the computational complexity and the need for rigorous error control, we provide both a formal verification using Coq and two numerical implementations in Python.
 
 This repository allows readers and researchers to reproduce our results and verify the computations independently.
 
-# Repository Structure
+## Repository Structure
 
-	•	coq/: Contains the Coq scripts for formal verification.
-	•	python/: Contains two subfolders:
-		•	interval_arithmetic/: Python implementation using the mpmath library for interval arithmetic.
-		•	custom_rounding/: Python implementation with custom floating-point rounding strategies.
-	•	README.md: This file.
-	•	LICENSE: License information for the repository.
+- coq: Contains the Coq scripts for formal verification.
+- python: Contains two subfolders:
+  - interval_arithmetic: Python implementation using the mpmath library for interval arithmetic.
+  - custom_rounding: Python implementation with custom floating-point rounding strategies.
+  - requirements.txt: Required Python packages for the implementations.
+- README.md: This file.
+- LICENSE: License information for the repository.
 
-# Getting Started
-
-# Prerequisites
+## Prerequisites
 
 To run the code in this repository, you need the following software installed:
 
-	•	For Coq:
-		•	Coq Proof Assistant (version 8.13 or later recommended)
-	•	For Python implementations:
-		•	Python 3.7 or later
-		•	Required Python packages:
-			•	mpmath (for interval arithmetic implementation)
-			•	numpy
+- For Coq:
+  - Coq Proof Assistant (version 8.18 or later recommended)
+- For Python implementations:
+  - Python 3.9 or later
 
-# Installation
+## Installation
 
-## Coq Installation
+### Coq Installation
 
-	•	Windows and macOS: Download installers from the Coq official website.
-	•	Linux: Install via your package manager or use opam.
+- Windows and macOS: Download installers from the [Coq official website](https://coq.inria.fr/download).
+- Linux: Install via your package manager or use opam.
 
-## Python Installation
+### Python Installation
 
-	•	Install Python from the official website or via a package manager.
-	•	Install required packages using pip:
+- Install Python from the official website or via a package manager.
+- Install required packages using pip:
 
-```
-pip install mpmath numpy
+```bash
+pip install -r python/requirements.txt
 ```
 
+## Coq Implementation
 
+The Coq implementation provides a formal verification of the lower bound for $\mathcal{M}^\downarrow_{5,4}(t_{i-1}, t_i)$ for a specific interval $[t_{i-1}, t_i]$. Due to computational limitations, verifying all intervals is impractical in Coq. However, the scripts allow for rigorous verification on selected intervals.
 
-Coq Implementation
+### Setup and Usage
 
-Description
+1. Navigate to the Coq Folder:
 
-The Coq implementation provides a formal verification of the lower bound for \(\mathcal{M}^\downarrow_{5,4}(t_{i-1}, t_i)\) for a specific interval \([t_{i-1}, t_i]\). Due to computational limitations, verifying all intervals is impractical in Coq. However, the scripts allow for rigorous verification on selected intervals.
+```bash
+cd coq
+```
+
+2. Open the Coq File:
+
+Open the Main.v file using your preferred Coq IDE (CoqIDE, Proof General, or VSCode with Coq extension).
+
+3. Compile and Step Through the Proof:
+
+- Load the file in the IDE.
+- Step through the proof to see the verification of the lower bound on the specified interval.
+- You can modify the interval endpoints in the script to verify other intervals.
+
+4. Understanding the Script:
+
+- The script defines the function $\mathcal{M}^\downarrow_{5,4}(a, b)$ and computes the lower bound.
+- It uses Coq's real number definitions and interval arithmetic tactic for rigorous proof development.
+
+## Python Implementations
+
+### Implementation 1: Interval Arithmetic with mpmath
+
+This implementation uses the `mpmath` library to perform interval arithmetic, providing rigorous bounds by accounting for all possible values within each interval, including floating-point errors.
 
 Setup and Usage
 
-	1.	Navigate to the Coq Folder:
+1. Navigate to the Interval Arithmetic Folder:
 
-cd coq
+```bash
+cd python/interval_arithmetic
+```
 
+2. Run the Script:
 
-	2.	Open the Coq File:
-Open the verification.v file using your preferred Coq IDE (CoqIDE, Proof General, or VSCode with Coq extension).
-	3.	Compile and Step Through the Proof:
-	•	Load the file in the IDE.
-	•	Step through the proof to see the verification of the lower bound on the specified interval.
-	•	You can modify the interval endpoints in the script to verify other intervals.
-	4.	Understanding the Script:
-	•	The script defines the function \(\mathcal{M}^\downarrow_{5,4}(a, b)\) and computes the lower bound.
-	•	It uses Coq’s real number definitions and tactics for rigorous proof development.
+```bash
+python main.py
+```
 
-Python Implementations
+3. Script Overview:
 
-Common Setup
+- The script compute_lower_bound.py performs the following steps:
+  - Divides the interval $[\tfrac{1}{3}, 3]$ into subintervals.
+  - Computes $\mathcal{M}^\downarrow_{5,4}(a, b)$ over each subinterval using interval arithmetic.
+  - Records the lower bound from each subinterval.
+  - Determines the minimum lower bound across all intervals.
 
-	1.	Navigate to the Python Folder:
+4. Output:
 
-cd python
+- The script outputs the computed global lower bound, confirming that $\min_{1 \leq i \leq N} \mathcal{M}^\downarrow_{5,4}(t_{i-1}, t_i) \geq 0.9999030108006773$.
+- The script also saves a `results.csv` file with the computed lower bounds for each subinterval.
 
+5. Understanding the Code:
 
-	2.	Install Dependencies (if not already installed):
+- The function `M54_down` computes $\mathcal{M}^\downarrow_{5,4}(a, b)$ using mpmath functions.
+- Interval arithmetic is achieved by creating intervals for each real number and performing computations with these intervals.
 
-pip install -r requirements.txt
-
-The requirements.txt file should contain:
-
-mpmath
-numpy
-
-
-
-Implementation 1: Interval Arithmetic with mpmath
-
-Description
-
-This implementation uses the mpmath library to perform interval arithmetic, providing rigorous bounds by accounting for all possible values within each interval, including floating-point errors.
-
-Usage
-
-	1.	Navigate to the Interval Arithmetic Folder:
-
-cd interval_arithmetic
-
-
-	2.	Run the Script:
-
-python compute_lower_bound.py
-
-
-	3.	Script Overview:
-
-	•	The script compute_lower_bound.py performs the following steps:
-	•	Divides the interval \([\tfrac{1}{3}, 3]\) into  subintervals.
-	•	Computes \(\M_{5,4}(x)\) over each subinterval using interval arithmetic.
-	•	Records the lower bound from each subinterval.
-	•	Determines the minimum lower bound across all intervals.
-	4.	Output:
-	•	The script outputs the computed global lower bound, confirming that \(\M_{5,4}(x) \geq 0.9999030108006773\).
-	5.	Adjusting Precision:
-	•	You can adjust the decimal precision by modifying the mp.dps parameter at the beginning of the script.
-
-from mpmath import mp
-mp.dps = 30  # Set decimal places of precision
-
-
-	6.	Understanding the Code:
-	•	The function M54(x) computes \(\M_{5,4}(x)\) using mpmath functions.
-	•	Interval arithmetic is achieved by creating intervals for x and performing computations with these intervals.
-
-Implementation 2: Custom Rounding
-
-Description
+### Implementation 2: Custom Rounding
 
 This implementation manually controls the floating-point rounding direction to ensure conservative estimates. By strategically rounding computations up or down, it accounts for floating-point errors and ensures the computed lower bound is rigorous.
 
-Usage
+Setup and Usage
 
-	1.	Navigate to the Custom Rounding Folder:
+1. Navigate to the Custom Rounding Folder:
 
-cd custom_rounding
+```bash
+cd python/custom_rounding
+```
 
+2. Run the Script:
 
-	2.	Run the Script:
+```bash
+python main.py
+```
 
-python compute_lower_bound.py
+3. Script Overview:
 
+- The script compute_lower_bound.py performs the following steps:
+  - Divides the interval $[\tfrac{1}{3}, 3]$ into subintervals.
+  - For each subinterval:
+    - Computes $\mathcal{M}^\downarrow_{5,4}(t_{i-1}, t_i)$ at the endpoints with controlled rounding.
+  - Determines the minimum value, ensuring it is a rigorous lower bound.
+    - Records the minimum lower bound across all intervals.
 
-	3.	Script Overview:
-	•	The script compute_lower_bound.py performs the following steps:
-	•	Divides the interval \([\tfrac{1}{3}, 3]\) into ￼ subintervals.
-	•	For each subinterval:
-	•	Computes \(\M_{5,4}(x)\) at the endpoints with controlled rounding.
-	•	Determines the minimum value, ensuring it is a rigorous lower bound.
-	•	Records the minimum lower bound across all intervals.
-	4.	Output:
-	•	The script outputs the computed global lower bound, confirming that \(\M_{5,4}(x) \geq 0.9999030108006773\).
-	5.	Understanding the Code:
-	•	The script uses the decimal module to control rounding direction.
-	•	Functions are defined to perform arithmetic operations with specified rounding modes.
-	•	The computations ensure that any rounding errors decrease the overall result, maintaining a valid lower bound.
-	6.	Adjusting Precision:
-	•	You can adjust the decimal precision by setting the prec parameter in the decimal context.
+4. Output:
 
-from decimal import localcontext, Decimal, ROUND_DOWN, ROUND_UP
-localcontext().prec = 30  # Set decimal places of precision
+- The script outputs the computed global lower bound, confirming that $\min_{1 \leq i \leq N} \mathcal{M}^\downarrow_{5,4}(t_{i-1}, t_i) \geq 0.9999030108006773$.
 
-
-
-Results
+## Results
 
 Both implementations confirm the rigorous lower bound:
 
-\[
-\M_{5,4}(x) \geq 0.9999030108006773 \quad \text{for all } x \in \left[\tfrac{1}{3}, 3\right].
-\]
+$$
+	\min_{1 \leq i \leq N} \mathcal{M}^\downarrow_{5,4}(t_{i-1}, t_i) \geq 0.9999030108006773.
+$$
 
-This result supports the proof of the lower bound for ￼ as detailed in our paper.
+This result supports the proof of the lower bound for $\inf\{\mathcal{M}^\downarrow_{5,4}(x): x\in[\tfrac{1}{3}, 3]\}$ as detailed in our paper.
 
-Contributing
+## Contributing
 
-Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request.
+Contributions are welcome! If you find any issues or have suggestions for improvements, please open an issue or submit a pull request. Please also feel free to contact the authors for any questions or collaborations through the emails provided in the paper.
 
-License
+## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
